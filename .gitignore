@@ -23,3 +23,6 @@ include/stamp-h1
 libtool
 Makefile
 Makefile.in
+/Posix/
+/build/
+/output/
