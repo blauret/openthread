@@ -63,6 +63,16 @@ ot_cli_LDFLAGS                                                        += \
     $(NULL)
 endif
 
+if OPENTHREAD_EXAMPLES_DA15100
+ot_cli_LDADD                                                          += \
+    $(top_builddir)/examples/platforms/da15100/libopenthread-da15100.a   \
+    $(NULL)
+
+ot_cli_LDFLAGS                                                        += \
+    -T $(top_srcdir)/examples/platforms/da15100/da15100.ld               \
+    $(NULL)
+endif
+
 ot_cli_SOURCES                                                         = \
     main.c                                                               \
     $(NULL)

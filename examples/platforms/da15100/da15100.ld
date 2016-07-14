@@ -28,51 +28,64 @@
 
 /**
  * @file
- *   This file includes the platform-specific initializers.
- *
+ *   GCC linker script for DA15100.
  */
 
-#ifndef PLATFORM_CC2538_H_
-#define PLATFORM_CC2538_H_
+MEMORY
+{
+  FLASH (rx) :           ORIGIN = 0x00200000,            LENGTH = 0x0007FFD4
+  FLASH_CCA (rx) :       ORIGIN = 0x0027FFD4,            LENGTH = 0x2C
+  SRAM (rwx) :           ORIGIN = 0x20000000,            LENGTH = 32K
+}
 
-#include <stdint.h>
+ENTRY(flash_cca_lock_page)
+SECTIONS
+{
+    .text : ALIGN(4)
+    {
+        _text = .;
+        *(.vectors)
+        *(.text*)
+        *(.rodata*)
+        KEEP(*(.init))
+        KEEP(*(.fini))
+        _etext = .;
+    } > FLASH= 0
 
-#include "cc2538-reg.h"
+    .init_array :
+    {
+        _init_array = .;
+        KEEP(*(SORT(.init_array.*)))
+        KEEP(*(.init_array*))
+        _einit_array = .;
+    } > FLASH
 
-/**
- * This function initializes the alarm service used by OpenThread.
- *
- */
-void cc2538AlarmInit(void);
+    .data : ALIGN(4)
+    {
+        _data = .;
+        *(.data*)
+        _edata = .;
+    } > SRAM AT > FLASH
+    _ldata = LOADADDR(.data);
 
-/**
- * This function performs alarm driver processing.
- *
- */
-void cc2538AlarmProcess(void);
+    .bss : ALIGN(4)
+    {
+        _bss = .;
+        *(.bss*)
+        *(COMMON)
+        _ebss = .;
+    } > SRAM
 
-/**
- * This function initializes the radio service used by OpenThread.
- *
- */
-void cc2538RadioInit(void);
+    _heap = .;
+    end = .;
 
-/**
- * This function performs radio driver processing.
- *
- */
-void cc2538RadioProcess(void);
+    .stack : ALIGN(4)
+    {
+        *(.stack)
+    } > SRAM
 
-/**
- * This function initializes the random number service used by OpenThread.
- *
- */
-void cc2538RandomInit(void);
-
-/**
- * This function performs UART driver processing.
- *
- */
-void cc2538UartProcess(void);
-
-#endif  // PLATFORM_CC2538_H_
+    .flashcca :
+    {
+        KEEP(*(.flash_cca))
+    } > FLASH_CCA
+}

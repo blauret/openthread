@@ -33,13 +33,13 @@
  */
 
 #include <platform/uart.h>
-#include "platform-cc2538.h"
+#include "platform-da15100.h"
 
 void PlatformInit(int argc, char *argv[])
 {
-    cc2538AlarmInit();
-    cc2538RadioInit();
-    cc2538RandomInit();
+    da15100AlarmInit();
+    da15100RadioInit();
+    da15100RandomInit();
     otPlatUartEnable();
 }
 
@@ -47,7 +47,7 @@ void PlatformProcessDrivers(void)
 {
     // should sleep and wait for interrupts here
 
-    cc2538UartProcess();
-    cc2538RadioProcess();
-    cc2538AlarmProcess();
+    da15100UartProcess();
+    da15100RadioProcess();
+    da15100AlarmProcess();
 }

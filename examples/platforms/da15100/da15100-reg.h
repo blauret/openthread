@@ -28,12 +28,12 @@
 
 /**
  * @file
- *   This file includes CC2538 register definitions.
+ *   This file includes DA15100 register definitions.
  *
  */
 
-#ifndef CC2538_REG_H_
-#define CC2538_REG_H_
+#ifndef DA15100_REG_H_
+#define DA15100_REG_H_
 
 #include <stdint.h>
 

@@ -37,7 +37,8 @@
 #include <openthread-types.h>
 #include <common/code_utils.hpp>
 #include <platform/uart.h>
-#include "platform-cc2538.h"
+
+#include "platform-da15100.h"
 
 enum
 {
@@ -161,7 +162,7 @@ exit:
     return;
 }
 
-void cc2538UartProcess(void)
+void da15100UartProcess(void)
 {
     processReceive();
     processTransmit();

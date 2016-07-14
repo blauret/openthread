@@ -63,6 +63,16 @@ ot_ncp_LDFLAGS                                                        += \
     $(NULL)
 endif
 
+if OPENTHREAD_EXAMPLES_DA15100
+ot_ncp_LDADD                                                          += \
+    $(top_builddir)/examples/platforms/da15100/libopenthread-da15100.a   \
+    $(NULL)
+
+ot_ncp_LDFLAGS                                                        += \
+    -T $(top_srcdir)/examples/platforms/da15100/da15100.ld               \
+    $(NULL)
+endif
+
 ot_ncp_SOURCES                                                         = \
     main.c                                                               \
     $(NULL)

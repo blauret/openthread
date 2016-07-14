@@ -35,11 +35,12 @@
  */
 
 #include <platform/random.h>
-#include "platform-cc2538.h"
+
+#include "platform-da15100.h"
 
 static uint32_t s_state = 1;
 
-void cc2538RandomInit(void)
+void da15100RandomInit(void)
 {
     // use Extended Identifier portion of IEEE EUI-64 as the seed
     s_state = HWREG(IEEE_EUI64 + 4);

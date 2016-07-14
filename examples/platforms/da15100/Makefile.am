@@ -28,14 +28,14 @@
 
 include $(abs_top_nlbuild_autotools_dir)/automake/pre.am
 
-lib_LIBRARIES                             = libopenthread-cc2538.a
+lib_LIBRARIES                             = libopenthread-da15100.a
 
-libopenthread_cc2538_a_CPPFLAGS           = \
+libopenthread_da15100_a_CPPFLAGS          = \
     -I$(top_srcdir)/include                 \
     -I$(top_srcdir)/src/core                \
     $(NULL)
 
-libopenthread_cc2538_a_SOURCES            = \
+libopenthread_da15100_a_SOURCES           = \
     alarm.c                                 \
     logging.c                               \
     platform.c                              \
@@ -46,8 +46,8 @@ libopenthread_cc2538_a_SOURCES            = \
     $(NULL)
 
 noinst_HEADERS                            = \
-    cc2538-reg.h                            \
-    platform-cc2538.h                       \
+    da15100-reg.h                           \
+    platform-da15100.h                      \
     $(NULL)
 
 if OPENTHREAD_BUILD_COVERAGE

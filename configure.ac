@@ -415,11 +415,11 @@ AM_CONDITIONAL([OPENTHREAD_ENABLE_NCP_UART], [test "${enable_ncp}"  = "uart"])
 
 AC_ARG_WITH(examples,
     [AS_HELP_STRING([--with-examples=TARGET],
-        [Specify the examples from one of: none, posix, cc2538 @<:@default=none@:>@.])],
+        [Specify the examples from one of: none, posix, cc2538, da15100 @<:@default=none@:>@.])],
     [
         case "${with_examples}" in
 
-        none|posix|cc2538)
+        none|posix|cc2538|da15100)
             ;;
         *)
             AC_MSG_ERROR([Invalid value ${with_examples} for --with-examples])
@@ -440,6 +440,10 @@ case ${with_examples} in
         OPENTHREAD_EXAMPLES_CC2538=1
         ;;
 
+    da15100)
+        OPENTHREAD_EXAMPLES_DA15100=1
+        ;;
+
 esac
 
 AC_MSG_RESULT(${OPENTHREAD_EXAMPLES})
@@ -455,6 +459,10 @@ AC_DEFINE_UNQUOTED([OPENTHREAD_EXAMPLES_POSIX],[${OPENTHREAD_EXAMPLES_POSIX}],[D
 AC_SUBST(OPENTHREAD_EXAMPLES_CC2538)
 AM_CONDITIONAL([OPENTHREAD_EXAMPLES_CC2538], [test "${OPENTHREAD_EXAMPLES}" = "cc2538"])
 AC_DEFINE_UNQUOTED([OPENTHREAD_EXAMPLES_CC2538],[${OPENTHREAD_EXAMPLES_CC2538}],[Define to 1 if you want to use cc2538 examples])
+
+AC_SUBST(OPENTHREAD_EXAMPLES_DA15100)
+AM_CONDITIONAL([OPENTHREAD_EXAMPLES_DA15100], [test "${OPENTHREAD_EXAMPLES}" = "da15100"])
+AC_DEFINE_UNQUOTED([OPENTHREAD_EXAMPLES_DA15100],[${OPENTHREAD_EXAMPLES_DA15100}],[Define to 1 if you want to use da15100 examples])
 
 #
 # Tools
@@ -566,6 +574,7 @@ examples/apps/cli/Makefile
 examples/apps/ncp/Makefile
 examples/platforms/Makefile
 examples/platforms/cc2538/Makefile
+examples/platforms/da15100/Makefile
 examples/platforms/posix/Makefile
 tools/Makefile
 tools/spi-hdlc-adapter/Makefile

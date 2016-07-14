@@ -36,7 +36,8 @@
 #include <stdint.h>
 
 #include <platform/alarm.h>
-#include "platform-cc2538.h"
+
+#include "platform-da15100.h"
 
 enum
 {
@@ -49,7 +50,7 @@ static uint32_t sAlarmT0 = 0;
 static uint32_t sAlarmDt = 0;
 static bool sIsRunning = false;
 
-void cc2538AlarmInit(void)
+void da15100AlarmInit(void)
 {
     HWREG(NVIC_ST_RELOAD) = kSystemClock / kTicksPerSec;
     HWREG(NVIC_ST_CTRL) = NVIC_ST_CTRL_CLK_SRC | NVIC_ST_CTRL_INTEN | NVIC_ST_CTRL_ENABLE;
@@ -72,7 +73,7 @@ void otPlatAlarmStop(void)
     sIsRunning = false;
 }
 
-void cc2538AlarmProcess(void)
+void da15100AlarmProcess(void)
 {
     uint32_t expires;
     bool fire = false;

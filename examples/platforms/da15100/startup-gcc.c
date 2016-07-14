@@ -28,13 +28,13 @@
 
 /**
  * @file
- *   This file implements gcc-specific startup code for the cc2538.
+ *   This file implements gcc-specific startup code for the da15100.
  */
 
 #include <stdint.h>
 #include <string.h>
 
-#include "cc2538-reg.h"
+#include "da15100-reg.h"
 
 extern uint8_t _ldata;
 extern uint8_t _data;
