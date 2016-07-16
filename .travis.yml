@@ -62,6 +62,6 @@ matrix:
     - env: BUILD_TARGET="cc2538"
       compiler: gcc
       os: linux
-- env: BUILD_TARGET="da15100"
+    - env: BUILD_TARGET="da15100"
       compiler: gcc
       os: linux
